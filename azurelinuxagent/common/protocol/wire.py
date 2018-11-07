@@ -182,9 +182,12 @@ class WireProtocol(Protocol):
             self.client.report_health(provision_status.status,
                                       provision_status.subStatus,
                                       provision_status.description)
-        if provision_status.properties.certificateThumbprint is not None:
-            thumbprint = provision_status.properties.certificateThumbprint
-            self.client.report_role_prop(thumbprint)
+
+        logger.info("Skipping role properties report")
+
+        # if provision_status.properties.certificateThumbprint is not None:
+        #   thumbprint = provision_status.properties.certificateThumbprint
+        #   self.client.report_role_prop(thumbprint)
 
     def report_vm_status(self, vm_status):
         validate_param("vm_status", vm_status, VMStatus)
